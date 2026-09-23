@@ -1,0 +1,20 @@
+[project]
+name = "healrag"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Mansi091", email = "madgulemansi987@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=1.26.0",
+    "openai>=1.0.0",
+]
+
+[project.scripts]
+healrag = "healrag:main"
+
+[build-system]
+requires = ["uv_build>=0.12.18,<0.13.0"]
+build-backend = "uv_build"
