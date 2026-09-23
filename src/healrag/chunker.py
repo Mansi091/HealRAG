@@ -1,12 +1,8 @@
-"""
-Document loader and Text Chunker module for the RAG pipeline (without dataclass).
-"""
 from typing import List, Dict, Any, Optional
 import uuid
 
 
 class Document:
-    """Represents an input text document."""
 
     def __init__(
         self,
@@ -23,7 +19,6 @@ class Document:
 
 
 class Chunk:
-    """Represents a piece of text cut from a Document."""
 
     def __init__(
         self,
@@ -46,7 +41,6 @@ class Chunk:
 
 
 class TextChunker:
-    """Splits long documents into smaller overlapping chunks."""
 
     def __init__(self, chunk_size: int = 500, chunk_overlap: int = 50):
         if chunk_overlap >= chunk_size:
@@ -55,7 +49,6 @@ class TextChunker:
         self.chunk_overlap = chunk_overlap
 
     def split_document(self, document: Document) -> List[Chunk]:
-        """Split a single Document into a list of Chunk objects."""
         text = document.text.strip()
         if not text:
             return []
@@ -82,7 +75,6 @@ class TextChunker:
         return chunks
 
     def split_documents(self, documents: List[Document]) -> List[Chunk]:
-        """Split multiple documents into a flat list of chunks."""
         all_chunks: List[Chunk] = []
         for doc in documents:
             all_chunks.extend(self.split_document(doc))

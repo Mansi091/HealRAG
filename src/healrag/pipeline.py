@@ -1,7 +1,3 @@
-"""
-Complete RAG Pipeline Orchestrator.
-Manages Document Ingestion, Retrieval, Context Augmentation, and LLM Generation.
-"""
 from typing import List, Dict, Any, Optional, Tuple
 from healrag.chunker import Document, Chunk, TextChunker
 from healrag.embedder import BaseEmbedder, SimpleTFIDFEmbedder, OpenAIEmbedder
@@ -9,9 +5,6 @@ from healrag.vector_store import VectorStore
 
 
 class RAGPipeline:
-    """
-    RAG Pipeline unifying Ingestion, Vector Indexing, Similarity Search, and Grounded Generation.
-    """
 
     def __init__(
         self,
@@ -30,13 +23,11 @@ class RAGPipeline:
         self.base_url = base_url
 
     def ingest_documents(self, documents: List[Document]) -> int:
-        """Chunk documents and add them to the vector store."""
         chunks = self.chunker.split_documents(documents)
         self.vector_store.add_chunks(chunks, self.embedder)
         return len(chunks)
 
     def ingest_texts(self, texts: List[str], metadatas: Optional[List[Dict[str, Any]]] = None) -> int:
-        """Helper to quickly ingest raw text strings."""
         docs = []
         for i, text in enumerate(texts):
             meta = metadatas[i] if metadatas and i < len(metadatas) else {"source": f"doc_{i+1}"}
@@ -44,11 +35,9 @@ class RAGPipeline:
         return self.ingest_documents(docs)
 
     def retrieve(self, query: str, top_k: int = 3) -> List[Tuple[Chunk, float]]:
-        """Retrieve top-K context chunks matching the query."""
         return self.vector_store.similarity_search(query, self.embedder, top_k=top_k)
 
     def build_prompt(self, query: str, retrieved_chunks: List[Tuple[Chunk, float]]) -> str:
-        """Assemble the context-augmented prompt for the LLM."""
         context_blocks = []
         for idx, (chunk, score) in enumerate(retrieved_chunks, 1):
             src = chunk.metadata.get("source", "Unknown Source")
@@ -70,12 +59,6 @@ Answer:"""
         return prompt
 
     def query(self, query: str, top_k: int = 3) -> Dict[str, Any]:
-        """
-        Full RAG Pipeline execution:
-        1. Retrieve top-K relevant chunks
-        2. Construct augmented prompt
-        3. Call LLM (OpenRouter/OpenAI API if key provided, otherwise return prompt and context)
-        """
         retrieved = self.retrieve(query, top_k=top_k)
         prompt = self.build_prompt(query, retrieved)
 

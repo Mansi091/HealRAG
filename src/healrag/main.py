@@ -1,10 +1,6 @@
-"""
-Main demonstration entrypoint for the Normal RAG Pipeline with OpenRouter integration.
-"""
 import os
 import sys
 
-# Load .env file if available
 env_path = os.path.join(os.path.dirname(__file__), "..", "..", ".env")
 if os.path.exists(env_path):
     with open(env_path, "r", encoding="utf-8") as f:
@@ -17,7 +13,6 @@ if os.path.exists(env_path):
 from healrag import RAGPipeline, Document, SimpleTFIDFEmbedder, OpenAIEmbedder
 
 
-# Sample dataset: Medical & General Health Guidelines
 SAMPLE_DOCUMENTS = [
     Document(
         text="""Cardiovascular Health & Exercise Guidelines:
@@ -38,7 +33,6 @@ Adequate daily water intake is essential for proper renal filtration and metabol
 
 
 def main():
-    # Configure stdout to handle UTF-8 cleanly
     if sys.stdout.encoding != 'utf-8':
         try:
             sys.stdout.reconfigure(encoding='utf-8')
@@ -49,7 +43,6 @@ def main():
     print("         NORMAL RAG PIPELINE DEMONSTRATION")
     print("=" * 60)
 
-    # Check for OpenRouter / OpenAI API key in environment
     api_key = os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY")
     
     if api_key:
@@ -67,12 +60,10 @@ def main():
         print("    Using local TF-IDF vector embeddings for similarity search.")
         pipeline = RAGPipeline(embedder=SimpleTFIDFEmbedder())
 
-    # Step 1: Ingest Documents
     print("\n[Step 1: Document Ingestion & Chunking]")
     num_chunks = pipeline.ingest_documents(SAMPLE_DOCUMENTS)
     print(f"[+] Successfully indexed {len(SAMPLE_DOCUMENTS)} documents into {num_chunks} text chunks.")
 
-    # Step 2: Querying
     sample_queries = [
         "How many minutes of exercise are recommended for heart health?",
         "What dietary changes help prevent Type 2 Diabetes?",

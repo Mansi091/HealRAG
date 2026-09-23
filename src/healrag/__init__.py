@@ -1,6 +1,3 @@
-"""
-HealRAG: Modular RAG Pipeline Package.
-"""
 from healrag.chunker import Document, Chunk, TextChunker
 from healrag.embedder import BaseEmbedder, SimpleTFIDFEmbedder, OpenAIEmbedder
 from healrag.vector_store import VectorStore
