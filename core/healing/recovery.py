@@ -1,9 +1,9 @@
 import logging
 from typing import Dict, Any
 from pydantic import BaseModel, Field
-from ingestion.indexer import index_documents
-from vectorstore.chroma_store import chroma_store
-from evidence.evidence_logger import evidence_logger
+from core.ingestion.indexer import index_documents
+from core.vectorstore.chroma_store import chroma_store
+from core.evidence.evidence_logger import evidence_logger
 
 logger = logging.getLogger(__name__)
 

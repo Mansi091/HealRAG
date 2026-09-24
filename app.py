@@ -2,11 +2,11 @@ import sys
 import argparse
 import uvicorn
 from api.main import app
-from ingestion.indexer import index_documents
-from graph.workflow import run_healrag_pipeline
-from evaluation.ragas_evaluator import ragas_evaluator
-from health.health_checker import health_checker
-from healing.recovery import system_recovery
+from core.ingestion.indexer import index_documents
+from core.graph.workflow import run_healrag_pipeline
+from core.evaluation.ragas_evaluator import ragas_evaluator
+from core.health.health_checker import health_checker
+from core.healing.recovery import system_recovery
 import structlog
 
 logger = structlog.get_logger(__name__)

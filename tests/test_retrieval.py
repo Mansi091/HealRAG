@@ -1,9 +1,9 @@
 import pytest
 from unittest.mock import patch, MagicMock
 from langchain_core.documents import Document
-from retrieval.retriever import DocumentRetriever
-from retrieval.relevance_grader import RelevanceGrader
-from retrieval.query_rewriter import QueryRewriter
+from core.retrieval.retriever import DocumentRetriever
+from core.retrieval.relevance_grader import RelevanceGrader
+from core.retrieval.query_rewriter import QueryRewriter
 
 
 @pytest.fixture
@@ -15,7 +15,7 @@ def sample_docs():
 
 
 def test_retriever_returns_list(sample_docs):
-    with patch("retrieval.retriever.chroma_store") as mock_store:
+    with patch("core.retrieval.retriever.chroma_store") as mock_store:
         mock_store.similarity_search.return_value = sample_docs
         retriever = DocumentRetriever(top_k=2)
         results = retriever.retrieve("What is RAG?")
@@ -24,7 +24,7 @@ def test_retriever_returns_list(sample_docs):
 
 
 def test_retriever_handles_error():
-    with patch("retrieval.retriever.chroma_store") as mock_store:
+    with patch("core.retrieval.retriever.chroma_store") as mock_store:
         mock_store.similarity_search.side_effect = Exception("DB error")
         retriever = DocumentRetriever(top_k=2)
         results = retriever.retrieve("test query")

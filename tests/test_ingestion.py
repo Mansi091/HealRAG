@@ -1,7 +1,7 @@
 import pytest
 from langchain_core.documents import Document
-from ingestion.loader import DocumentLoader
-from ingestion.splitter import DocumentSplitter
+from core.ingestion.loader import DocumentLoader
+from core.ingestion.splitter import DocumentSplitter
 
 
 def test_document_loader(tmp_path):

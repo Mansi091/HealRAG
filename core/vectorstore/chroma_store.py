@@ -3,7 +3,7 @@ import logging
 from typing import List, Optional
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
-from embeddings.embedder import get_embedder
+from core.embeddings.embedder import get_embedder
 from config import settings
 
 logger = logging.getLogger(__name__)

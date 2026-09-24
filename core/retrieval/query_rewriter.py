@@ -3,7 +3,7 @@ import logging
 from typing import Dict, Any
 from pydantic import BaseModel, Field
 from langchain_openai import ChatOpenAI
-from generation.prompts import QUERY_REWRITER_PROMPT
+from core.generation.prompts import QUERY_REWRITER_PROMPT
 from config import settings
 
 logger = logging.getLogger(__name__)

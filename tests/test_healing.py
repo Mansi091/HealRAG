@@ -1,9 +1,9 @@
 import pytest
 from unittest.mock import patch, MagicMock
 from langchain_core.documents import Document
-from healing.hallucination_checker import HallucinationChecker
-from healing.retry_manager import RetryManager
-from evidence.evidence_logger import EvidenceLogger
+from core.healing.hallucination_checker import HallucinationChecker
+from core.healing.retry_manager import RetryManager
+from core.evidence.evidence_logger import EvidenceLogger
 
 
 @pytest.fixture
@@ -52,7 +52,7 @@ def test_retry_manager_can_retry():
 
 def test_retry_manager_reaches_limit():
     mgr = RetryManager(max_retries=2)
-    with patch("healing.retry_manager.evidence_logger") as mock_logger:
+    with patch("core.healing.retry_manager.evidence_logger") as mock_logger:
         mock_logger.log_event.return_value = {}
         record = mgr.record_retry("test query", 1, "ungrounded_answer", "regenerate_answer")
         assert record.attempt_number == 2

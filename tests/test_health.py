@@ -1,13 +1,13 @@
 import pytest
 from unittest.mock import patch, MagicMock
-from health.health_checker import HealthChecker
+from core.health.health_checker import HealthChecker
 
 
 def test_health_returns_healthy():
     checker = HealthChecker()
-    with patch("health.health_checker.chroma_store") as mock_store, \
-         patch("health.health_checker.baseline_manager") as mock_bm, \
-         patch("health.health_checker.evidence_logger") as mock_logger:
+    with patch("core.health.health_checker.chroma_store") as mock_store, \
+         patch("core.health.health_checker.baseline_manager") as mock_bm, \
+         patch("core.health.health_checker.evidence_logger") as mock_logger:
 
         mock_store.get_vectorstore.return_value = MagicMock()
         mock_store.as_retriever.return_value = MagicMock()
@@ -21,9 +21,9 @@ def test_health_returns_healthy():
 
 def test_health_degraded_on_vectorstore_failure():
     checker = HealthChecker()
-    with patch("health.health_checker.chroma_store") as mock_store, \
-         patch("health.health_checker.baseline_manager") as mock_bm, \
-         patch("health.health_checker.evidence_logger") as mock_logger:
+    with patch("core.health.health_checker.chroma_store") as mock_store, \
+         patch("core.health.health_checker.baseline_manager") as mock_bm, \
+         patch("core.health.health_checker.evidence_logger") as mock_logger:
 
         mock_store.get_vectorstore.side_effect = Exception("DB unavailable")
         mock_store.as_retriever.return_value = MagicMock()
@@ -37,9 +37,9 @@ def test_health_degraded_on_vectorstore_failure():
 
 def test_health_degraded_on_excess_failures():
     checker = HealthChecker()
-    with patch("health.health_checker.chroma_store") as mock_store, \
-         patch("health.health_checker.baseline_manager") as mock_bm, \
-         patch("health.health_checker.evidence_logger") as mock_logger:
+    with patch("core.health.health_checker.chroma_store") as mock_store, \
+         patch("core.health.health_checker.baseline_manager") as mock_bm, \
+         patch("core.health.health_checker.evidence_logger") as mock_logger:
 
         mock_store.get_vectorstore.return_value = MagicMock()
         mock_store.as_retriever.return_value = MagicMock()

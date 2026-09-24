@@ -2,7 +2,7 @@ import logging
 from typing import Dict, Any
 from .loader import DocumentLoader
 from .splitter import DocumentSplitter
-from vectorstore.chroma_store import chroma_store
+from core.vectorstore.chroma_store import chroma_store
 
 logger = logging.getLogger(__name__)
 

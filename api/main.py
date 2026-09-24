@@ -6,15 +6,15 @@ from pydantic import BaseModel, Field
 
 import structlog
 
-from graph.workflow import run_healrag_pipeline
-from caching.redis_cache import redis_cache
-from ingestion.indexer import index_documents
-from evaluation.ragas_evaluator import ragas_evaluator
-from evaluation.baseline import baseline_manager
-from evaluation.regression import regression_detector
-from health.health_checker import health_checker
-from healing.recovery import system_recovery
-from evidence.evidence_logger import evidence_logger
+from core.graph.workflow import run_healrag_pipeline
+from core.caching.redis_cache import redis_cache
+from core.ingestion.indexer import index_documents
+from core.evaluation.ragas_evaluator import ragas_evaluator
+from core.evaluation.baseline import baseline_manager
+from core.evaluation.regression import regression_detector
+from core.health.health_checker import health_checker
+from core.healing.recovery import system_recovery
+from core.evidence.evidence_logger import evidence_logger
 
 logger = structlog.get_logger(__name__)
 

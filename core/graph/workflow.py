@@ -1,13 +1,13 @@
 from typing import Dict, Any, List
 from langgraph.graph import StateGraph, START, END
 
-from graph.state import GraphState
-from retrieval.retriever import DocumentRetriever
-from retrieval.relevance_grader import RelevanceGrader
-from retrieval.query_rewriter import QueryRewriter
-from generation.generator import ResponseGenerator
-from healing.hallucination_checker import HallucinationChecker
-from healing.retry_manager import RetryManager
+from core.graph.state import GraphState
+from core.retrieval.retriever import DocumentRetriever
+from core.retrieval.relevance_grader import RelevanceGrader
+from core.retrieval.query_rewriter import QueryRewriter
+from core.generation.generator import ResponseGenerator
+from core.healing.hallucination_checker import HallucinationChecker
+from core.healing.retry_manager import RetryManager
 import structlog
 from config import settings
 

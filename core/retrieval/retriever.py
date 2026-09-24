@@ -1,7 +1,7 @@
 import logging
 from typing import List
 from langchain_core.documents import Document
-from vectorstore.chroma_store import chroma_store
+from core.vectorstore.chroma_store import chroma_store
 from config import settings
 
 logger = logging.getLogger(__name__)

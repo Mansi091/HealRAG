@@ -1,10 +1,10 @@
 import logging
 from typing import Dict, Any
 from pydantic import BaseModel, Field
-from vectorstore.chroma_store import chroma_store
-from evaluation.baseline import baseline_manager
-from evaluation.regression import regression_detector
-from evidence.evidence_logger import evidence_logger
+from core.vectorstore.chroma_store import chroma_store
+from core.evaluation.baseline import baseline_manager
+from core.evaluation.regression import regression_detector
+from core.evidence.evidence_logger import evidence_logger
 
 logger = logging.getLogger(__name__)
 

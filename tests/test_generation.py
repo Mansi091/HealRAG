@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import patch, MagicMock
 from langchain_core.documents import Document
-from generation.generator import ResponseGenerator
+from core.generation.generator import ResponseGenerator
 
 
 @pytest.fixture

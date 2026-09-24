@@ -1,6 +1,6 @@
 import pytest
-from evaluation.regression import RegressionDetector
-from evaluation.baseline import BaselineManager
+from core.evaluation.regression import RegressionDetector
+from core.evaluation.baseline import BaselineManager
 
 
 @pytest.fixture

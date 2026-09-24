@@ -1,7 +1,7 @@
 import logging
 from typing import Dict, Any
 from pydantic import BaseModel, Field
-from evidence.evidence_logger import evidence_logger
+from core.evidence.evidence_logger import evidence_logger
 from config import settings
 
 logger = logging.getLogger(__name__)

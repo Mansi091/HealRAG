@@ -1,7 +1,7 @@
 import logging
 from typing import Dict, Any
 from pydantic import BaseModel, Field
-from evaluation.baseline import baseline_manager
+from core.evaluation.baseline import baseline_manager
 from config import settings
 
 logger = logging.getLogger(__name__)

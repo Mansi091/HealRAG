@@ -3,7 +3,7 @@ from typing import List, Dict, Any, Tuple
 from langchain_openai import ChatOpenAI
 from langchain_core.documents import Document
 from langchain_core.output_parsers import StrOutputParser
-from generation.prompts import ANSWER_GENERATION_PROMPT
+from core.generation.prompts import ANSWER_GENERATION_PROMPT
 from config import settings
 
 logger = logging.getLogger(__name__)

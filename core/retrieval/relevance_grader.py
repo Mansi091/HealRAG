@@ -4,7 +4,7 @@ from typing import List, Dict, Any
 from pydantic import BaseModel, Field
 from langchain_openai import ChatOpenAI
 from langchain_core.documents import Document
-from generation.prompts import RELEVANCE_GRADER_PROMPT
+from core.generation.prompts import RELEVANCE_GRADER_PROMPT
 from config import settings
 
 logger = logging.getLogger(__name__)
