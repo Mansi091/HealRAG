@@ -7,6 +7,9 @@ from graph.workflow import run_healrag_pipeline
 from evaluation.ragas_evaluator import ragas_evaluator
 from health.health_checker import health_checker
 from healing.recovery import system_recovery
+import structlog
+
+logger = structlog.get_logger(__name__)
 
 
 def main():

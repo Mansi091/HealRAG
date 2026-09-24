@@ -1,4 +1,3 @@
-import logging
 from typing import Dict, Any, List
 from langgraph.graph import StateGraph, START, END
 
@@ -9,9 +8,10 @@ from retrieval.query_rewriter import QueryRewriter
 from generation.generator import ResponseGenerator
 from healing.hallucination_checker import HallucinationChecker
 from healing.retry_manager import RetryManager
+import structlog
 from config import settings
 
-logger = logging.getLogger(__name__)
+logger = structlog.get_logger(__name__)
 
 
 # Instantiate pipeline components

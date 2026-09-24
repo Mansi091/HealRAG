@@ -1,6 +1,13 @@
 version: "3.9"
 
 services:
+  redis:
+    image: redis:7-alpine
+    container_name: healrag-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
   api:
     build:
       context: .
@@ -10,6 +17,10 @@ services:
       - "8000:8000"
     env_file:
       - .env
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - redis
     volumes:
       - ./data:/app/data
       - ./evidence:/app/evidence

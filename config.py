@@ -19,7 +19,14 @@ class Settings(BaseModel):
     EMBEDDING_MODEL: str = Field(default_factory=lambda: os.getenv("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2"))
 
     # Vectorstore Settings
+    VECTOR_STORE_TYPE: str = Field(default_factory=lambda: os.getenv("VECTOR_STORE_TYPE", "chroma")) # 'chroma' or 'pinecone'
     CHROMA_PERSIST_DIR: str = Field(default_factory=lambda: os.getenv("CHROMA_PERSIST_DIR", "./data/chroma"))
+    COLLECTION_NAME: str = Field(default_factory=lambda: os.getenv("COLLECTION_NAME", "healrag_production"))
+    PINECONE_API_KEY: Optional[str] = Field(default_factory=lambda: os.getenv("PINECONE_API_KEY"))
+    PINECONE_INDEX_NAME: str = Field(default_factory=lambda: os.getenv("PINECONE_INDEX_NAME", "healrag-index"))
+
+    # Caching Settings
+    REDIS_URL: str = Field(default_factory=lambda: os.getenv("REDIS_URL", "redis://localhost:6379/0"))
 
     # Chunking & Retrieval Parameters
     TOP_K: int = Field(default_factory=lambda: int(os.getenv("TOP_K", "4")))

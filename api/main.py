@@ -4,7 +4,10 @@ from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+import structlog
+
 from graph.workflow import run_healrag_pipeline
+from caching.redis_cache import redis_cache
 from ingestion.indexer import index_documents
 from evaluation.ragas_evaluator import ragas_evaluator
 from evaluation.baseline import baseline_manager
@@ -13,8 +16,7 @@ from health.health_checker import health_checker
 from healing.recovery import system_recovery
 from evidence.evidence_logger import evidence_logger
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-logger = logging.getLogger("healrag-api")
+logger = structlog.get_logger(__name__)
 
 app = FastAPI(
     title="HealRAG API",
@@ -65,10 +67,20 @@ def process_query(request: QueryRequest):
         raise HTTPException(status_code=400, detail="Question cannot be empty.")
 
     try:
+        # Check semantic cache first
+        cached = redis_cache.get_cached_response(request.question)
+        if cached:
+            return cached
+
+        # Run pipeline if not cached
         response = run_healrag_pipeline(request.question)
+        
+        # Save to cache
+        redis_cache.set_cached_response(request.question, response)
+        
         return response
     except Exception as e:
-        logger.error(f"Error processing query: {e}")
+        logger.error("error_processing_query", error=str(e))
         raise HTTPException(status_code=500, detail=str(e))
 
 
