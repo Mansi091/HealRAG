@@ -1,0 +1,11 @@
+Artificial Intelligence (AI) and Retrieval-Augmented Generation (RAG) Overview
+
+Retrieval-Augmented Generation (RAG) combines document retrieval with large language model (LLM) generation.
+In standard RAG, user questions are converted into vector embeddings, matching chunks are fetched from a vector database like ChromaDB, and the retrieved context is passed into an LLM prompt.
+
+However, standard RAG systems frequently suffer from key failure modes:
+1. Poor Retrieval: The vector search fails to retrieve relevant chunks because the query phrasing is sub-optimal or documents are poorly indexed.
+2. Hallucination / Ungrounded Answers: The LLM generates facts that are not supported by the retrieved context.
+3. System Degradation: Model drift, corrupted indexes, or API latency degrade overall system precision over time.
+
+HealRAG addresses these challenges using self-healing loops, relevance grading, query rewriting, grounding verification, and continuous RAGAS evaluation.

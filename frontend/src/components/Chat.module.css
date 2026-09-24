@@ -1,0 +1,31 @@
+.container { display: flex; flex-direction: column; height: calc(100vh - 140px); }
+.toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.toolbarTitle { font-size: 18px; font-weight: 600; color: #e2e8f0; }
+.ingestBtn { padding: 8px 16px; background: #1e3a5f; border: 1px solid #38bdf8; color: #38bdf8; border-radius: 8px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 13px; transition: all 0.2s; }
+.ingestBtn:hover { background: #0369a1; color: #fff; }
+.ingestBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+.messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding: 4px; }
+.msg { display: flex; flex-direction: column; max-width: 80%; }
+.user { align-self: flex-end; }
+.assistant { align-self: flex-start; }
+.bubble { padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.6; white-space: pre-wrap; }
+.user .bubble { background: linear-gradient(135deg, #0369a1, #4f46e5); color: #fff; border-bottom-right-radius: 4px; }
+.assistant .bubble { background: #1e293b; border: 1px solid #334155; color: #e2e8f0; border-bottom-left-radius: 4px; }
+.typing { display: flex; gap: 5px; align-items: center; padding: 16px; }
+.typing span { width: 8px; height: 8px; background: #38bdf8; border-radius: 50%; animation: bounce 1.2s infinite; }
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce { 0%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-8px); } }
+.metaRow { margin-top: 6px; display: flex; flex-direction: column; gap: 5px; padding-left: 4px; }
+.sources { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.metaLabel { font-size: 11px; color: #64748b; }
+.sourceTag { font-size: 11px; padding: 2px 8px; background: #0f172a; border: 1px solid #334155; border-radius: 4px; color: #94a3b8; }
+.scores { display: flex; gap: 10px; flex-wrap: wrap; }
+.score { font-size: 11px; color: #64748b; }
+.healBadge { font-size: 11px; padding: 2px 8px; background: #422006; border: 1px solid #f59e0b; border-radius: 4px; color: #fcd34d; }
+.inputRow { display: flex; gap: 10px; margin-top: 16px; }
+.input { flex: 1; background: #1e293b; border: 1px solid #334155; border-radius: 10px; color: #e2e8f0; padding: 12px 16px; font-family: 'Inter', sans-serif; font-size: 14px; resize: none; outline: none; transition: border-color 0.2s; }
+.input:focus { border-color: #38bdf8; }
+.input::placeholder { color: #475569; }
+.sendBtn { width: 48px; height: 48px; background: linear-gradient(135deg, #0369a1, #4f46e5); border: none; border-radius: 10px; color: #fff; font-size: 22px; cursor: pointer; align-self: flex-end; transition: opacity 0.2s; }
+.sendBtn:disabled { opacity: 0.4; cursor: not-allowed; }

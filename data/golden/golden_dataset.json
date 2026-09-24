@@ -1,0 +1,23 @@
+[
+  {
+    "question": "What key failure modes affect standard RAG systems?",
+    "ground_truth": "Standard RAG systems suffer from poor retrieval, hallucination or ungrounded answers, and system degradation over time.",
+    "reference_context": [
+      "Standard RAG systems frequently suffer from key failure modes: 1. Poor Retrieval 2. Hallucination / Ungrounded Answers 3. System Degradation."
+    ]
+  },
+  {
+    "question": "Why is bounded retry necessary in self-healing systems?",
+    "ground_truth": "Bounded retries prevent infinite execution loops, ensuring system reliability and bounding operational cost.",
+    "reference_context": [
+      "Bounded Retries: Never create infinite loops in automated healing systems. Limit retries (e.g. MAX_RETRIES = 2) to ensure system reliability and bound execution cost."
+    ]
+  },
+  {
+    "question": "What recovery actions are taken when system health degrades?",
+    "ground_truth": "When health degrades below threshold, recovery workflows such as index re-building or fallback retrieval are executed and verified.",
+    "reference_context": [
+      "When quality degrades below configured thresholds, the system must trigger automated recovery workflows such as index re-building or fallback retrieval routines, followed by re-evaluation to verify recovery."
+    ]
+  }
+]
