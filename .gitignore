@@ -12,3 +12,6 @@ wheels/
 # Secrets
 .env
 
+# Database
+chroma_db/
+
